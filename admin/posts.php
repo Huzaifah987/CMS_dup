@@ -26,8 +26,8 @@
                         $source = '';
                       }
                       switch($source){
-                        case 'add_post';
-                            include 'includes/add_post.php';
+                        case 'create_post';
+                            include 'includes/create_post.php';
                           break;
 
                         case 'edit_post':
@@ -35,7 +35,7 @@
                           break;
 
                             default:
-                            include '';
+                            include 'includes/view_all_post.php';
                             break;
                       }
 
@@ -51,6 +51,4 @@
 
       <!-- /#page-wrapper -->
 
-
-
-  <?php include 'includes/footer.php' ?>
+      <?php include 'includes/footer.php'; ?>
