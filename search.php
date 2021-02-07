@@ -24,7 +24,7 @@
                $search = $_POST['search'];
 
 
-               $query = "SELECT * FROM posts WHERE post_title LIKE '%$search%' ";
+               $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
                $search_query = mysqli_query($link, $query);
 
                if($search_query == false) {
@@ -64,7 +64,7 @@
                    </p>
                    <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
                    <hr>
-                   <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">
+                   <img class="img-responsive" src="images/<?php echo $post_Image;?>" alt="">
                    <hr>
                    <p><?php echo $post_content ?></p>
                    <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>

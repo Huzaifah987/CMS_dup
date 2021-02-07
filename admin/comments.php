@@ -26,8 +26,8 @@
                         $source = '';
                       }
                       switch($source){
-                        case 'create_post';
-                            include 'includes/create_post.php';
+                        case 'add_post';
+                            include 'includes/add_post.php';
                           break;
 
                         case 'edit_post':
@@ -35,7 +35,7 @@
                           break;
 
                             default:
-                            include 'includes/view_all_post.php';
+                            include 'includes/view_all_comments.php';
                             break;
                       }
 

@@ -45,6 +45,11 @@
           }
 
           echo "<td>{$cat_title}</td>";
+
+
+
+
+
           echo "<td>{$post_tags}</td>";
           echo "<td>{$post_comment}</td>";
           echo "<td>{$post_status}</td>";

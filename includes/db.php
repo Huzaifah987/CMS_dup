@@ -1,13 +1,17 @@
 <?php
-  $db['servername'] = 'localhost';
-  $db['username'] = 'root';
-  $db['password'] = '';
-  $db['name'] = 'CMS_dup';
+  $db['db_server'] = 'localhost';
+  $db['db_user'] = 'root';
+  $db['db_pass'] = '';
+  $db['db_name']= 'cms';
 
-  foreach ($db as $key => $value) {
-    define(strtoupper($key),$value);
+// $db equal to $key ($db as $key)
+  foreach($db as $key => $value){
+    define(strtoupper($key), $value);
   }
 
-  $link = mysqli_connect(SERVERNAME,USERNAME,PASSWORD,NAME);
+  $link = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
- ?>
+  if ($link == false) {
+    die("Connection Error". mysqli_error($link));
+  }
+?>

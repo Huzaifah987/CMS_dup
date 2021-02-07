@@ -8,22 +8,34 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="./index.php">CMS Front</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <?php
-                $query = "SELECT * FROM categories";
-                $cat_query = mysqli_query($link, $query);
+            <ul class="nav navbar-nav">
 
-                while ($row = mysqli_fetch_assoc($cat_query)) {
-                    $cat_title = $row['cat_title'];
-                    echo "<li><a href='#'>{$cat_title}</a></li>";
+              <?php
+                $query = "SELECT * FROM categories";
+                $select_categories = mysqli_query($link, $query);
+
+                while ($row = mysqli_fetch_assoc($select_categories)) {
+                  $cat_title = $row['cat_title'];
+                  echo "<li><a href='#'>{$cat_title}</a></li>";
                 }
-             ?>
-             <li><a href="admin/index.php">Admin</a></li>
-          </ul>
+               ?>
+             <li>
+                  <a href="admin">Admin</a>
+              </li>
+              <!--
+              <li>
+                  <a href="#">Services</a>
+              </li>
+              <li>
+                  <a href="#">Contact</a>
+              </li>
+                 -->
+
+            </ul>
         </div>
         <!-- /.navbar-collapse -->
     </div>
