@@ -1,28 +1,17 @@
 <?php
-  if (isset($_POST['create_post'])){
+  if (isset($_POST['add_users'])){
+          $user_firstname        = $_POST['user_firstname'];
+          $user_lastname       = $_POST['user_lastname'];
+          $user_role  = $_POST['user_role'];
+          $username       = $_POST['username'];
 
-         $post_title        = $_POST['post_title'];
-         $post_author       = $_POST['post_author'];
-         $post_category_id  = $_POST['post_category'];
-         $post_status       = $_POST['post_status'];
+          $user_email        = $_POST['user_email'];
+          $user_password   = $_POST['user_password'];
 
-         $post_image        = $_FILES['post_image']['name'];
-         $post_image_temp   = $_FILES['post_image']['tmp_name'];
+  $query = "INSERT INTO users(user_firstname, user_lastname,user_role,username,user_email,user_password)";
+  $query .= "VALUES('$user_firstname','$user_lastname','$user_role','$username','$user_email','$user_password')";
 
-
-         $post_tags         = $_POST['post_tags'];
-         $post_content      = $_POST['post_content'];
-         $post_date         = date('d-m-y');
-
-
-     move_uploaded_file($post_image_temp, "../images/$post_image" );
-
-
-   $query = "INSERT INTO posts(post_category_id, post_title, post_user, post_date,post_image,post_content,post_tags,post_status) ";
-
-   $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_image}','{$post_content}','{$post_tags}', '{$post_status}') ";
-
-   $create_post_query = mysqli_query($link, $query);
+   $create_user_query = mysqli_query($link, $query);
 
 
 }
@@ -32,48 +21,32 @@
  <div class="col-xs-6">
    <form class="form-group" action="" method="post" enctype="multipart/form-data">
      <div class="mb-3">
-       <label  class="form-check-label" for="Title">Title</label>
-       <input class="form-control" type="text" name="post_title" value="">
+       <label  class="form-check-label" for="Title">First Name</label>
+       <input class="form-control" type="text" name="user_firstname" value="">
      </div>
-     <div class="form-select form-select-lg mb-3">
-       <br>
-       <select  name="post_category" id="">
-         <?php
-           $query = "SELECT * FROM categories";
-           $select_categories = mysqli_query($link, $query);
-
-           post_data_confirm($select_categories);
-
-           while ($row = mysqli_fetch_assoc($select_categories)) {
-             $cat_id = $row['cat_id'];
-             $cat_title = $row['cat_title'];
-
-             echo "<option value='{$cat_id}'>{$cat_title}</option>";
-           }
-          ?>
+     <div class="mb-3">
+       <label  class="form-check-label" for="Title">Last Name</label>
+       <input class="form-control" type="text" name="user_lastname" value="">
+     </div>
+     <br>
+       <select class="form-select" size="3" aria-label="Default select example" name="user_role" >
+         <option value="select option">Select Option</option>
+         <option value="admin">Admin</option>
+         <option value="user">User</option>
        </select>
-     </div>
      <br>
-     <div class="mb-3">
-       <label  class="form-check-label" for="Title">Author</label>
-       <input class="form-control" type="text" name="post_author" value="">
-     </div>
-     <div class="mb-3">
-       <label  class="form-check-label" for="Title">Post Tags</label>
-       <input class="form-control" type="text" name="post_tags" value="">
-     </div>
-     <div class="mb-3">
-       <label  class="form-check-label" for="Title">Images</label>
-       <input  type="file" name="post_image" value="">
-     </div>
      <div class="mb-3mb-3">
-       <label  class="form-check-label" for="Title">Comment</label>
-       <textarea name="post_content" class="form-control" ></textarea>
+       <label  class="form-check-label" for="Title">Username</label>
+       <input  class="form-control" type="text" name="username" value="">
      </div>
      <div class="mb-3">
-       <label  class="form-check-label" for="Title">Status</label>
-       <input class="form-control" type="text" name="post_status" value="">
+       <label  class="form-check-label" for="Title">E-mail</label>
+       <input class="form-control" type="text" name="user_email" value="">
+     </div>
+     <div class="mb-3">
+       <label  class="form-check-label" for="Title">Password</label>
+       <input class="form-control" type="password" name="user_password" value="">
      </div>
      <br>
-       <button class="btn btn-primary" type="submit" name="create_post">Submit</button>
+       <button class="btn btn-primary" type="submit" name="add_users">Submit</button>
    </form>

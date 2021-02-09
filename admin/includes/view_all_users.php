@@ -3,7 +3,7 @@
     <tr>
       <th>Id</th>
       <th>Username</th>
-      <th>Firsname</th>
+      <th>Firtsname</th>
       <th>Lastname</th>
       <th>E-mail</th>
       <th>Role</th>
@@ -30,8 +30,10 @@
           echo "<td>{$user_firstname}</td>";
           echo "<td>{$user_lastname}</td>";
           echo "<td>{$user_email}</td>";
-        //
           echo "<td>{$user_role}</td>";
+          echo "<td><a href='./users.php?approve={}'>Approve</a></td>";
+          echo "<td><a href='./comments.php?unapprove={}'>Unapprove</a></td>";
+          echo "<td><a href='./users.php?delete={$user_id}'>Delete</a></td>";
           echo "</tr>";
         }
        ?>
@@ -39,28 +41,12 @@
 </table>
 
 <?php
-  if (isset($_GET['approve'])) {
-    $the_comment_id = $_GET['approve'];
-
-    $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id= '{$the_comment_id}'";
-    $approve_query = mysqli_query($link, $query);
-    header("Location: comments.php");
-  }
-
-  if (isset($_GET['unapprove'])) {
-    $the_comment_id = $_GET['unapprove'];
-
-    $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id= '{$the_comment_id}' ";
-    $unapprove_query = mysqli_query($link, $query);
-    header("Location: comments.php");
-  }
-
-
   if (isset($_GET['delete'])) {
-    $the_comment_id = $_GET['delete'];
+    $user_id = $_GET['delete'];
 
-    $query = "DELETE FROM comments WHERE comment_id ={$the_comment_id}";
-    $delete_query = mysqli_query($link, $query);
-    header("Location: comments.php");
+    $query = "DELETE FROM users WHERE user_id = '$user_id'";
+    $user_delete_query = mysqli_query($link, $query);
+    header("Location: users.php");
+
   }
  ?>

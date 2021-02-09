@@ -59,6 +59,28 @@ if (isset($_POST['update_post'])) {
       <label  class="form-check-label" for="Title">Title</label>
       <input value="<?php echo $post_title; ?>" class="form-control" type="text" name="title" value="">
     </div>
+
+
+
+    <select  name="post_category" id="">
+      <?php
+        $query = "SELECT * FROM users";
+        $select_user = mysqli_query($link, $query);
+
+        post_data_confirm($select_user);
+
+        while ($row = mysqli_fetch_assoc($select_user)) {
+          $user_id = $row['user_id'];
+          $user_role = $row['user_role'];
+
+          echo "<option value='{$user_id}'>{$user_role}</option>";
+        }
+       ?>
+    </select>
+
+
+
+    
     <div class="form-select form-select-lg mb-3">
       <br>
       <select  name="post_category" id="">
