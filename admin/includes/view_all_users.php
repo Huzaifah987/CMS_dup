@@ -31,9 +31,10 @@
           echo "<td>{$user_lastname}</td>";
           echo "<td>{$user_email}</td>";
           echo "<td>{$user_role}</td>";
-          echo "<td><a href='./users.php?approve={}'>Approve</a></td>";
-          echo "<td><a href='./comments.php?unapprove={}'>Unapprove</a></td>";
+          echo "<td><a href='./users.php?change_to_admin={$user_id}'>Admin</a></td>";
+          echo "<td><a href='./users.php?change_to_user={$user_id}'>User</a></td>";
           echo "<td><a href='./users.php?delete={$user_id}'>Delete</a></td>";
+          echo "<td><a href='./users.php?source=edit_users&edit_users={$user_id}'>Update</a></td>";
           echo "</tr>";
         }
        ?>
@@ -48,5 +49,21 @@
     $user_delete_query = mysqli_query($link, $query);
     header("Location: users.php");
 
+  }
+
+  if (isset($_GET['change_to_admin'])) {
+    $user_id = $_GET['change_to_admin'];
+
+    $query = "UPDATE users SET user_role = 'admin' WHERE user_id='$user_id'";
+    $change_admin_query = mysqli_query($link, $query);
+    header("Location: users.php");
+  }
+
+  if (isset($_GET['change_to_user'])) {
+    $user_id = $_GET['change_to_user'];
+
+    $query = "UPDATE users SET user_role = 'user' WHERE user_id='$user_id'";
+    $change_user_query = mysqli_query($link, $query);
+    header("Location: users.php");
   }
  ?>
