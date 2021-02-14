@@ -135,7 +135,52 @@
          </div>
                          <!-- /.row -->
 
+                         <?php
+                         $query = "SELECT * FROM posts WHERE post_status='draft'";
+                         $select_all_draft_post = mysqli_query($link, $query);
+                         $post_draft_count = mysqli_num_rows($select_all_draft_post);
 
+                         $query = "SELECT * FROM comments WHERE comment_status='unapproved'";
+                         $select_all_unapprove_comment = mysqli_query($link, $query);
+                         $unapprove_comment_count = mysqli_num_rows($select_all_unapprove_comment);
+
+                         $query = "SELECT * FROM users WHERE user_role='admin'";
+                         $select_all_user = mysqli_query($link, $query);
+                         $user_count = mysqli_num_rows($select_all_user);
+                          ?>
+                 <div class="row">
+                     <script type="text/javascript">
+                      google.charts.load('current', {'packages':['bar']});
+                      google.charts.setOnLoadCallback(drawChart);
+
+                       function drawChart() {
+                          var data = google.visualization.arrayToDataTable([
+                          ['Date', 'Count',],
+                          <?php
+                            $element_text = ['Active Posts', 'Draft Post', 'Comment','Pending Comment' , 'Users', 'User Admin', 'Categories'];
+                            $element_count = [$post_count, $post_draft_count, $count_comment, $unapprove_comment_count , $count_user, $user_count, $count_cat];
+
+                            for ($i=0; $i < 7; $i++) {
+                              echo "['{$element_text[$i]}'". "," . "{$element_count[$i]}],";
+                            }
+                           ?>
+                          //['Posts', 1000],
+                          ]);
+
+                          var options = {
+                            chart: {
+                            title: '',
+                             subtitle: '',
+                                }
+                           };
+
+                             var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                         chart.draw(data, google.charts.Bar.convertOptions(options));
+                               }
+                             </script>
+                              <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
+                           </div>
 
             </div>
             <!-- /.container-fluid -->
