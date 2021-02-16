@@ -9,7 +9,7 @@
     $post_title = $row['post_title'];
     $post_author = $row['post_author'];
     $post_date = $row['post_date'];
-    $post_image = $row['post_Image'];
+    $post_image = $row['post_image'];
     $post_category = $row['post_category_id'];
     $post_tags = $row['post_tags'];
     $post_comment= $row['post_content'];
@@ -35,12 +35,12 @@ if (isset($_POST['update_post'])) {
     $select_images = mysqli_query($link, $query);
 
     while ($row = mysqli_fetch_assoc($select_images)) {
-      $post_image =$row['post_Image'];
+      $post_image =$row['post_image'];
     }
 
   }
 
-  $query = "UPDATE posts SET post_category_id = '{$post_category}', post_title = '{$post_title}', post_author ='{$post_author}', post_date= now(), post_Image='{$post_image}', post_content='{$post_comment}',post_tags='{$post_tags}',post_status='{$post_status}' WHERE post_id = {$post_id}";
+  $query = "UPDATE posts SET post_category_id = '{$post_category}', post_title = '{$post_title}', post_author ='{$post_author}', post_date= now(), post_image='{$post_image}', post_content='{$post_comment}',post_tags='{$post_tags}',post_status='{$post_status}' WHERE post_id = {$post_id}";
 
   $query_update = mysqli_query($link, $query);
 

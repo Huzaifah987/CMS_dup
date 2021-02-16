@@ -14,7 +14,7 @@ function post_data_confirm(){
       $post_content = $_POST['post_comment'];
       //$post_status = $_POST['post_status'];
 
-      $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_Image, post_content, post_tags, post_comment_count, post_status)";
+      $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status)";
       $query .= "VALUES('$post_category','$post_title','$post_author',now(),'$post_image',  '$post_content')";
 
       $add_post_query = mysqli_query($link, $query);
