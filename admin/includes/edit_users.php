@@ -20,7 +20,7 @@
   if (isset($_POST['edit_users'])){
           $user_firstname        = $_POST['user_firstname'];
           $user_lastname       = $_POST['user_lastname'];
-          $user_role  = $_POST['user_role'];
+          $user_role  =  $_POST['user_role'];
           $username       = $_POST['username'];
 
           $user_email        = $_POST['user_email'];

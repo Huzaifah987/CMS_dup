@@ -2,17 +2,27 @@
   if (isset($_POST['add_users'])){
           $user_firstname        = $_POST['user_firstname'];
           $user_lastname       = $_POST['user_lastname'];
-          $user_role  = $_POST['user_role'];
+          $user_role  =  $_POST['user_role'];
           $username       = $_POST['username'];
 
           $user_email        = $_POST['user_email'];
-          $user_password   = $_POST['user_password'];
+          $user_password  = $_POST['user_password'];
+
+          $hashFormat= "$2y$10$";
+          $salt = "iusesomecrazystings222";
+          $hashF_and_salt= $hashFormat . $salt;
+
+          $user_password = mysqli_real_escape_string($link, $user_password);
+          $user_email = mysqli_real_escape_string($link, $user_email);
+
+          $user_password= crypt($user_password,  $hashF_and_salt);
+
 
   $query = "INSERT INTO users(user_firstname, user_lastname,user_role,username,user_email,user_password)";
   $query .= "VALUES('$user_firstname','$user_lastname','$user_role','$username','$user_email','$user_password')";
 
    $create_user_query = mysqli_query($link, $query);
-
+   echo "User Created: ". " " . "<a class='form-label' href='users.php'>View Users</a>";
 
 }
 

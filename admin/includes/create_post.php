@@ -67,9 +67,16 @@
        <input  type="file" name="post_image" value="">
      </div>
      <div class="mb-3mb-3">
-       <label  class="form-check-label" for="Title">Comment</label>
-       <textarea name="post_content" class="form-control" ></textarea>
+       <label  class="form-check-label" for="Title">Content</label>
+       <textarea id='editor' name="post_content" class="form-control" ></textarea>
      </div>
+     <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
      <div class="mb-3">
        <label  class="form-check-label" for="Title">Status</label>
        <input class="form-control" type="text" name="post_status" value="">
