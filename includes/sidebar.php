@@ -31,6 +31,12 @@
               <button class="btn btn-primary" type="submit" name="login">Login</button>
             </span>
         </div>
+      </form>
+      <br>
+          <form class="form-group" action="includes/signup.php" method="post">
+            <div class="text-center">
+              <button class="btn btn-primary" type="submit" name="sign-up">Register</button>
+            </div>
           </form>
           <!-- search form -->
 
