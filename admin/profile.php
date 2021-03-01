@@ -36,8 +36,6 @@
 
            $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', user_role ='{$user_role}',username='{$username}', user_email='{$user_email}',user_password='{$user_password}' WHERE username = '$username'";
            $update_user_query = mysqli_query($link, $query);
-
-           post_data_confirm(  $update_user_query);
          }
 
     ?>

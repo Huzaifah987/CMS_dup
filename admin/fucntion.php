@@ -1,26 +1,4 @@
 <?php
-
-//post data confirm
-function post_data_confirm(){
-  global $link;
-  if (isset($_POST['create_post'])) {
-      $post_title = $_POST['post_title'];
-      $post_category = $_POST['post_category'];
-      $post_author = $_POST['post_author'];
-      $post_tag = $_POST['post_tags'];
-      $post_image = $_FILES['post_image']['name'];
-      $post_image_temp = $_FILES['post_image']['tmp_name'];
-      $post_date = date('d-m-y');
-      $post_content = $_POST['post_comment'];
-      //$post_status = $_POST['post_status'];
-
-      $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status)";
-      $query .= "VALUES('$post_category','$post_title','$post_author',now(),'$post_image',  '$post_content')";
-
-      $add_post_query = mysqli_query($link, $query);
-    }
-  }
-
 // insert categories in admin
   function insert_categories(){
     global $link;
