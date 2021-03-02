@@ -1,4 +1,38 @@
 <?php
+function confirmQuery(){
+  global $link;
+  if (isset($_POST['add_post'])) {
+    $post_title = $_POST['post_title'];
+    $post_author = $_POST['post_author'];
+    $post_category_id  = $_POST['post_category'];
+    $post_tags = $_POST['post_tags'];
+    $post_image        = $_FILES['post_image']['name'];
+    $post_image_temp   = $_FILES['post_image']['tmp_name'];
+    $post_content = $_POST['post_content'];
+    $post_status = $_POST['post_status'];
+    $post_date         = date('d-m-y');
+
+    $post_title = mysqli_real_escape_string($link,$post_title);
+    $post_author =mysqli_real_escape_string($link,$post_author);
+    $post_category_id =mysqli_real_escape_string($link,$post_category_id);
+    $post_tags =mysqli_real_escape_string($link,$post_tags);
+    $post_image =mysqli_real_escape_string($link,$post_image);
+    $post_content =mysqli_real_escape_string($link,$post_content);
+    $post_status =mysqli_real_escape_string($link,$post_status);
+    $post_date =mysqli_real_escape_string($link,$post_date );
+
+    move_uploaded_file($post_image_temp, "../images/$post_image" );
+
+    $query = "INSERT INTO posts(post_category_id, post_title,post_author,post_date,post_content,post_image,post_tags,post_status) ";
+
+    $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_content}','{$post_image}','{$post_tags}', '{$post_status}') ";
+
+    $query_add= mysqli_query($link, $query);
+  }
+}
+
+
+
 // insert categories in admin
   function insert_categories(){
     global $link;

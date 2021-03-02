@@ -38,12 +38,16 @@
        <label  class="form-check-label" for="Title">Last Name</label>
        <input class="form-control" type="text" name="user_lastname" value="">
      </div>
+
+
      <br>
-       <select class="form-select" size="3" aria-label="Default select example" name="user_role" >
+       <select class="form-select" aria-label="Default select example" name="user_role" >
          <option value="select option">Select Option</option>
          <option value="admin">Admin</option>
          <option value="user">User</option>
        </select>
+     <br>
+
      <br>
      <div class="mb-3mb-3">
        <label  class="form-check-label" for="Title">Username</label>

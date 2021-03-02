@@ -44,6 +44,7 @@
                       <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                       <hr>
                       <p><?php echo $post_content; ?></p>
+                      <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                       <hr>
                      <?php
@@ -61,7 +62,7 @@
                         $email = $_POST['email_comment'];
                         $author = $_POST['author_comment'];
                         $comment = $_POST['create_comment'];
-
+                        $comment = mysqli_real_escape_string($link, $comment);
 
                        $query = "INSERT INTO comments (comment_post_id,comment_email,comment_author,comment_content,comment_status,comment_date)";
                        $query .= "VALUES ($post_id,'{$email}','{$author}','{$comment}','unapproved',now())";

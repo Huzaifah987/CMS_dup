@@ -1,27 +1,16 @@
 <?php
   include 'db.php';
   if (isset($_POST['sign-up'])) {
-    $user_firstname        = $_POST['user_firstname'];
-    $user_lastname       = $_POST['user_lastname'];
+    $firstname = $_POST['user_firstname'];
+    $lastname       = $_POST['user_lastname'];
     $username       = $_POST['username'];
 
-    $user_email        = $_POST['user_email'];
-    $user_password  = $_POST['user_password'];
-
-    $user_firstname = $user_lastname = $username = $user_email = $user_password = "";
-
-    $hashFormat= "$2y$10$";
-    $salt = "iusesomecrazystings222";
-    $hashF_and_salt= $hashFormat . $salt;
-
-    $user_password = mysqli_real_escape_string($link, $user_password);
-    $user_email = mysqli_real_escape_string($link, $user_email);
-
-    $user_password= crypt($user_password,  $hashF_and_salt);
+    $email        = $_POST['user_email'];
+    $password  = $_POST['user_password'];
 
 
     $query = "INSERT INTO users(user_firstname, user_lastname,username,user_email,user_password)";
-    $query .= "VALUES('$user_firstname','$user_lastname','$username','$user_email','$user_password')";
+    $query .= "VALUES('$firstname','$lastname','$username','$email','$password')";
 
     $create_user_query = mysqli_query($link, $query);
   }

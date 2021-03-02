@@ -49,7 +49,7 @@
          <option value="select option"><?php echo $user_role; ?></option>
           <?php
             if ($user_role == 'admin') {
-              echo "<option value='user'>user</option>";
+              echo "<option value='user'>User</option>";
             }else {
               echo "<option value='admin'>Admin</option>";
             }

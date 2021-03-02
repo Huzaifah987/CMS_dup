@@ -50,6 +50,15 @@
        ?>
     </select>
   </div>
+
+    <div class="mb-3">
+      <select class="form-select form-select-sm" name="post_status">
+        <option value="draft">Draft</option>
+        <option value="published">Published</option>
+      </select>
+    </div>
+    <br>
+
   <div class="mb-3">
     <label  class="form-check-label" for="post_author">Author</label>
     <input class="form-control" type="text" name="post_author" value="">
@@ -80,12 +89,6 @@
             console.error( error );
         } );
       </script>
-
-
-  <div class="mb-3">
-    <label  class="form-check-label" for="Title">Status</label>
-    <input class="form-control" type="text" name="post_status" value="">
-  </div>
 
 
   <br>

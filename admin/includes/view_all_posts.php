@@ -10,6 +10,7 @@
       <th>Tags</th>
       <th>Comments</th>
       <th>Status</th>
+      <th>Comment Counts</th>
       <th>Edit</th>
       <th>Delete</th>
     </tr>
@@ -29,6 +30,7 @@
           $post_tags = $row['post_tags'];
           $post_comment= $row['post_content'];
           $post_status = $row['post_status'];
+          $post_comment_count = $row['post_comment_count'];
 
           echo "<tr>";
           echo "<td>$post_id</td>";
@@ -53,7 +55,8 @@
           echo "<td>$post_tags</td>";
           echo "<td>$post_comment</td>";
           echo "<td>$post_status</td>";
-          echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
+          echo "<td>$post_comment_count</td>";
+          echo "<td><a href='posts.php?source=edit_posts&p_id={$post_id}'>Edit</a></td>";
           echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
           echo "</tr>";
         }
@@ -62,3 +65,13 @@
        ?>
   </tbody>
 </table>
+
+<?php
+  if (isset($_GET['delete'])) {
+    $post_id = $_GET['delete'];
+
+    $query = "DELETE FROM posts WHERE post_id= '$post_id'";
+    $delete_query = mysqli_query($link, $query);
+    header("Location: posts.php");
+  }
+ ?>
