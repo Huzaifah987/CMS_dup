@@ -1,6 +1,31 @@
-<table class="table table-bordered table-hover">
+<?php if (isset($_POST['checkBoxArray'])){
+  foreach ($_POST['checkBoxArray'] as $checkBoxValue) {
+  
+  }
+}
+  ?>
+
+
+
+<form class="" action="" method="post">
+
+  <div id="bulkOptionContainer" class="col-xs-4">
+    <select class="form-control" name="">
+      <option value="">Select Option</option>
+      <option value="">Published</option>
+      <option value="">Draft</option>
+    </select>
+  </div>
+
+  <div class="col-xs-4">
+    <input class="btn btn-success" type="submit" name="submit" value="Apply">
+    <a class="btn btn-primary" href="add_posts.php">Add New</a>
+  </div>
+
+  <table class="table table-bordered table-hover">
   <thead>
     <tr>
+      <th><input id="selectAllBoxes" type="checkbox" name="" value=""></th>
       <th>Id</th>
       <th>Title</th>
       <th>Author</th>
@@ -33,6 +58,11 @@
           $post_comment_count = $row['post_comment_count'];
 
           echo "<tr>";
+          ?>
+
+          <th><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="<?php echo $post_id; ?>"></th>
+
+          <?php
           echo "<td>$post_id</td>";
           echo "<td>$post_title</td>";
           echo "<td>$post_author</td>";
@@ -65,6 +95,7 @@
        ?>
   </tbody>
 </table>
+</form>
 
 <?php
   if (isset($_GET['delete'])) {

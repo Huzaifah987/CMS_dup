@@ -147,6 +147,10 @@
                          $query = "SELECT * FROM users WHERE user_role='admin'";
                          $select_all_user = mysqli_query($link, $query);
                          $user_count = mysqli_num_rows($select_all_user);
+
+                         $query = "SELECT * FROM posts WHERE post_status='published'";
+                         $select_published_post = mysqli_query($link, $query);
+                         $published_post_count = mysqli_num_rows($select_published_post);
                           ?>
                  <div class="row">
                      <script type="text/javascript">
@@ -157,10 +161,10 @@
                           var data = google.visualization.arrayToDataTable([
                           ['Date', 'Count',],
                           <?php
-                            $element_text = ['Active Posts', 'Draft Post', 'Comment','Pending Comment' , 'Users', 'User Admin', 'Categories'];
-                            $element_count = [$post_count, $post_draft_count, $count_comment, $unapprove_comment_count , $count_user, $user_count, $count_cat];
+                            $element_text = ['Active Posts', 'Published Post' ,'Draft Post', 'Comment','Pending Comment' , 'Users', 'User Admin', 'Categories'];
+                            $element_count = [$post_count,  $published_post_count , $post_draft_count, $count_comment, $unapprove_comment_count , $count_user, $user_count, $count_cat];
 
-                            for ($i=0; $i < 7; $i++) {
+                            for ($i=0; $i < 8; $i++) {
                               echo "['{$element_text[$i]}'". "," . "{$element_count[$i]}],";
                             }
                            ?>

@@ -47,6 +47,7 @@
     $query_update = mysqli_query($link, $query);
 
     confirmQuery($query_update);
+
     if ($query_update == false) {
       die("Query Failed". mysqli_error($link));
     }
