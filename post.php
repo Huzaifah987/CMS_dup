@@ -75,6 +75,8 @@
 
                         $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id= '{$post_id}'";
                         $update_comment_count = mysqli_query($link , $query);
+
+                        echo "<p class='bg-success'>Your comment has been send and need to be approve.";
                       }
                      ?>
                     <div class="well">

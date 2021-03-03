@@ -1,6 +1,7 @@
 <?php
  include 'includes/header.php';
  include 'includes/db.php';
+ //include 'click_navigation.php';
  ?>
 
     <!-- Navigation -->
