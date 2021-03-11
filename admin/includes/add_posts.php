@@ -26,6 +26,12 @@
     $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_content}','{$post_image}','{$post_tags}', '{$post_status}') ";
 
     $query_add= mysqli_query($link, $query);
+
+    confirmQuery($query_add);
+
+    $post_id = mysqli_insert_id($link);
+
+      echo "<p class='bg-success'>Post has been created. <a href='../post.php?p_id={$post_id}'>View Post </a> or <a href='posts.php'>Edit More Posts</a></p>";
   }
  ?>
 
@@ -82,14 +88,6 @@
      <textarea class="form-control "name="post_content" id="editor" cols="30" rows="10">
      </textarea>
   </div>
-  <script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-      </script>
-
 
   <br>
     <button class="btn btn-primary" type="submit" name="add_post">Submit</button>

@@ -20,7 +20,9 @@
               $query = "SELECT * FROM users WHERE user_id = '$user_id'";
               $select_user = mysqli_query($link, $query);
 
-              echo $user_id;
+              if (isset($user_id)) {
+                echo $user_id;
+              }
 
              ?> <b class="caret"></b></a>
             <ul class="dropdown-menu">

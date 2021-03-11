@@ -17,7 +17,7 @@
 
                 <h1 class="page-header">
                   <?php
-                    $query = "SELECT * FROM posts";
+                    $query = "SELECT * FROM posts WHERE post_status='published'";
                     $select_all_posts = mysqli_query($link, $query);
 
                     while ($row = mysqli_fetch_assoc($select_all_posts)) {

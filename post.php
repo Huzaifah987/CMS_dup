@@ -64,20 +64,25 @@
                         $comment = $_POST['create_comment'];
                         $comment = mysqli_real_escape_string($link, $comment);
 
-                       $query = "INSERT INTO comments (comment_post_id,comment_email,comment_author,comment_content,comment_status,comment_date)";
-                       $query .= "VALUES ($post_id,'{$email}','{$author}','{$comment}','unapproved',now())";
+                        if (!empty($comment) && !empty($email) && !empty($author)) {
+                          $query = "INSERT INTO comments (comment_post_id,comment_email,comment_author,comment_content,comment_status,comment_date)";
+                          $query .= "VALUES ($post_id,'{$email}','{$author}','{$comment}','unapproved',now())";
 
-                       $comment_query = mysqli_query($link, $query);
+                          $comment_query = mysqli_query($link, $query);
 
-                        if ($comment_query == false) {
-                          die("Query Failed". mysqli_error($link));
+                           if ($comment_query == false) {
+                             die("Query Failed". mysqli_error($link));
+                           }
+
+                           $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id= '{$post_id}'";
+                           $update_comment_count = mysqli_query($link , $query);
+
+                           echo "<p class='bg-success'>Your comment has been send and need to be approve.";
+                         }else {
+                           echo "<script>alert('Field cannot be empty')</script>";
+                         }
                         }
 
-                        $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id= '{$post_id}'";
-                        $update_comment_count = mysqli_query($link , $query);
-
-                        echo "<p class='bg-success'>Your comment has been send and need to be approve.";
-                      }
                      ?>
                     <div class="well">
                         <h4>Leave a Comment:</h4>
