@@ -6,6 +6,11 @@
     $username = $_POST['uid'];
     $password = $_POST['pwd'];
 
+    // sql protection
+    $username = stripslashes($username);
+    $password = stripslashes($password);
+    $username = mysqli_real_escape_string($link, $username);
+    $password = mysqli_real_escape_string($link, $password);
     $query = "SELECT * FROM users WHERE username= '$username'";
     $query_select_user = mysqli_query($link, $query);
     if ($query_select_user == false) {
@@ -20,6 +25,11 @@
       $db_user_password = $row['user_password'];
       $db_user_role = $row['user_role'];
     }
+
+    $password = crypt($password, $db_user_password);
+
+    $count = mysqli_num_rows($query_select_user);
+
 
     if ($username === $db_username && $password ===  $db_user_password) {
       $_SESSION['username'] = $db_username;

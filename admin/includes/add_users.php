@@ -8,22 +8,21 @@
           $user_email        = $_POST['user_email'];
           $user_password  = $_POST['user_password'];
 
-          $hashFormat= "$2y$10$";
-          $salt = "iusesomecrazystings222";
-          $hashF_and_salt= $hashFormat . $salt;
+          $query = "SELECT randSalt FROM users";
+          $select_randSalt = mysqli_query($link, $query);
+          while ($row = mysqli_fetch_assoc($select_randSalt))
+            $salt = $row['randSalt'];
+            $user_password = crypt($user_password, $salt);
 
-          $user_password = mysqli_real_escape_string($link, $user_password);
+          $username  = mysqli_real_escape_string($link, $username);
           $user_email = mysqli_real_escape_string($link, $user_email);
-
-          $user_password= crypt($user_password,  $hashF_and_salt);
-
+          $user_password = mysqli_real_escape_string($link, $user_password);
 
   $query = "INSERT INTO users(user_firstname, user_lastname,user_role,username,user_email,user_password)";
   $query .= "VALUES('$user_firstname','$user_lastname','$user_role','$username','$user_email','$user_password')";
 
    $create_user_query = mysqli_query($link, $query);
    echo "User Created: ". " " . "<a class='form-label' href='users.php'>View Users</a>";
-
 }
 
  ?>

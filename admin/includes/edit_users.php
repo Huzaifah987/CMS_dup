@@ -6,7 +6,7 @@
       $query_update_user = mysqli_query($link, $query);
   }
 
-    while ($row = mysqli_fetch_assoc($query_update_user)) {
+    while ($row = mysqli_fetch_array($query_update_user)) {
       $user_firstname        = $row['user_firstname'];
       $user_lastname       = $row['user_lastname'];
       $user_role  = $row['user_role'];
@@ -14,8 +14,8 @@
 
       $user_email        = $row['user_email'];
       $user_password   = $row['user_password'];
+      $salt = $row['randSalt'];
     }
-
 
   if (isset($_POST['edit_users'])){
           $user_firstname        = $_POST['user_firstname'];
@@ -26,9 +26,18 @@
           $user_email        = $_POST['user_email'];
           $user_password   = $_POST['user_password'];
 
+          $query = "SELECT randSalt FROM users";
+          $select_randSalt = mysqli_query($link, $query);
+          while ($row = mysqli_fetch_assoc($select_randSalt))
+            $salt = $row['randSalt'];
+            $user_password = crypt($user_password, $salt);
+
+          $username  = mysqli_real_escape_string($link, $username);
+         $user_email = mysqli_real_escape_string($link, $user_email);
+         $user_password = mysqli_real_escape_string($link, $user_password);
+
           $query = "UPDATE users SET user_firstname = '{$user_firstname}', user_lastname = '{$user_lastname}', user_role ='{$user_role}',username='{$username}', user_email='{$user_email}',user_password='{$user_password}' WHERE user_id = {$user_id}";
           $update_user_query = mysqli_query($link, $query);
-
 
         }
 
@@ -45,8 +54,8 @@
        <input class="form-control" type="text" name="user_lastname" value="<?php echo $user_lastname; ?>">
      </div>
      <br>
-       <select class="form-select" size="3" aria-label="Default select example" name="user_role" >
-         <option value="select option"><?php echo $user_role; ?></option>
+       <select class="form-select" name="user_role" >
+         <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
           <?php
             if ($user_role == 'admin') {
               echo "<option value='user'>User</option>";

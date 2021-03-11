@@ -32,7 +32,7 @@
                              </div>
                              <div class="col-xs-9 text-right">
                             <?php
-                              $query = "SELECT * FROM posts";
+                              $query = "SELECT * FROM posts ";
                               $select_all_post = mysqli_query($link, $query);
                               $post_count = mysqli_num_rows($select_all_post);
 
@@ -161,7 +161,7 @@
                           var data = google.visualization.arrayToDataTable([
                           ['Date', 'Count',],
                           <?php
-                            $element_text = ['Active Posts', 'Published Post' ,'Draft Post', 'Comment','Pending Comment' , 'Users', 'User Admin', 'Categories'];
+                            $element_text = ['Published Posts', 'Active Post' ,'Draft Post', 'Comment','Pending Comment' , 'Users', 'User Admin', 'Categories'];
                             $element_count = [$post_count,  $published_post_count , $post_draft_count, $count_comment, $unapprove_comment_count , $count_user, $user_count, $count_cat];
 
                             for ($i=0; $i < 8; $i++) {
