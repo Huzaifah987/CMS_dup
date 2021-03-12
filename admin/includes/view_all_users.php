@@ -33,7 +33,7 @@
           echo "<td>{$user_role}</td>";
           echo "<td><a href='./users.php?change_to_admin={$user_id}'>Admin</a></td>";
           echo "<td><a href='./users.php?change_to_user={$user_id}'>User</a></td>";
-          echo "<td><a href='./users.php?delete={$user_id}'>Delete</a></td>";
+          echo "<td><a  onClick=\"javascript: return confirm('Delete confirmation') \" href='./users.php?delete={$user_id}'>Delete</a></td>";
           echo "<td><a href='./users.php?source=edit_users&edit_users={$user_id}'>Update</a></td>";
           echo "</tr>";
         }

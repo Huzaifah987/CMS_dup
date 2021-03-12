@@ -42,7 +42,7 @@
 
     }
 
-    $query = "UPDATE posts SET post_category_id = '{$post_category}', post_title = '{$post_title}', post_author ='{$post_author}', post_date= now(), post_Image='{$post_image}', post_content='{$post_comment}',post_tags='{$post_tags}',post_status='{$post_status}' WHERE post_id = {$post_id}" ;
+    $query = "UPDATE posts SET post_category_id = '{$post_category}', post_title = '{$post_title}', post_author ='{$post_author}', post_date= now(), post_Image='{$post_image}', post_content='{$post_comment}',post_tags='{$post_tags}',post_status='{$post_status}', post_views_count= 0 WHERE post_id = {$post_id}" ;
 
     $query_update = mysqli_query($link, $query);
 
@@ -117,15 +117,6 @@
        <?php echo $post_comment; ?>
      </textarea>
   </div>
-  <script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-      </script>
-
-
   <br>
     <button class="btn btn-primary" type="submit" name="update_post">Update</button>
   </div>

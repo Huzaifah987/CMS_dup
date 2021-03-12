@@ -21,6 +21,31 @@
              confirmQuery($bulk_delete_query);
              break;
 
+            case 'clone':
+                  $query = "SELECT * FROM posts WHERE post_id = '$checkBoxValue'";
+                  $clone_query = mysqli_query($link, $query);
+
+                  while ($row = mysqli_fetch_assoc($clone_query)) {
+                    $post_title = $row['post_title'];
+                    $post_author = $row['post_author'];
+                    $post_category_id  = $row['post_category_id'];
+                    $post_date = $row['post_date'];
+                    $post_image = $row['post_image'];
+                    $post_tags = $row['post_tags'];
+                    $post_comment= $row['post_content'];
+                    $post_status = $row['post_status'];
+                  }
+
+                  $query = "INSERT INTO posts(post_category_id, post_title,post_author,post_date,post_content,post_image,post_tags,post_status) ";
+                  $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}',now(),'{$post_comment}','{$post_image}','{$post_tags}', 'draft') ";
+
+                  $result = mysqli_query($link, $query);
+
+                  if (!$result) {
+                    die("Query Failed". mysqli_error($link));
+                  }
+               break;
+
        default:
          // code...
          break;
@@ -38,6 +63,7 @@
           <option value="published">Publish</option>
           <option value="draft">Draft</option>
           <option value="delete">Delete</option>
+          <option value="clone">Clone</option>
 
           </select>
           </div>
@@ -70,7 +96,7 @@
   </thead>
   <tbody >
       <?php
-        $query = "SELECT * FROM posts";
+        $query = "SELECT * FROM posts ORDER BY post_id DESC";
         $select_all_posts = mysqli_query($link, $query);
 
         while ($row = mysqli_fetch_assoc($select_all_posts)) {
@@ -84,6 +110,7 @@
           $post_comment= $row['post_content'];
           $post_status = $row['post_status'];
           $post_comment_count = $row['post_comment_count'];
+          $post_views_count = $row['post_views_count'];
 
           echo "<tr>";
           ?>
@@ -114,6 +141,7 @@
           echo "<td>$post_comment</td>";
           echo "<td>$post_status</td>";
           echo "<td>$post_comment_count</td>";
+          echo "<td>$post_views_count</td>";
           echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
           echo "<td><a href='posts.php?source=edit_posts&p_id={$post_id}'>Edit</a></td>";
           echo "<td><a onClick=\"javascript: return confirm('Delete confirmation') \" href='posts.php?delete={$post_id}'>Delete</a></td>";
